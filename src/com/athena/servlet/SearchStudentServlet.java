@@ -26,10 +26,12 @@ public class SearchStudentServlet extends HttpServlet {
 			StudentService service = new StudentServiceImpl();
 			List<Student> list = service.searchStudent(sname, sgender);
 			
+			/*
 			System.out.println("list的大小是："+list.size());
 			for (Student student : list) {
 				System.out.println("stu="+student);
 			}
+			*/
 			
 			request.setAttribute("list", list);
 			

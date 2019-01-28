@@ -100,4 +100,12 @@ public class StudentDaoImpl implements StudentDao{
 		return result.intValue();
 	}
 
+	@Override
+	public List<Student> sexStudent(String sgender) throws SQLException {
+		QueryRunner runner = new QueryRunner(JDBCUtil02.getDataSource());
+		String sql = "select * from stu where gender=? ";
+		List<Student> list = runner.query(sql, new BeanListHandler<Student>(Student.class), sgender);
+		return list;
+	}
+
 }

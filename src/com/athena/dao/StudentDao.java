@@ -31,4 +31,5 @@ public interface StudentDao {
 	 */
 	int findCount() throws SQLException ;
 	
+	List<Student> sexStudent(String sgender) throws SQLException;
 }

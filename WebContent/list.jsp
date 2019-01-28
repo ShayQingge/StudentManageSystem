@@ -20,48 +20,44 @@
 <body>
 	<h3>欢迎使用学生管理系统</h3>
 	<form action="SearchStudentServlet" method="post">
-	<table border="1" width="700">
-		<tr colspan="8">
-			<td colspan="8">
-					
-					按姓名查询:<input type="text" name="sname"/>
-					&nbsp;
-					按性别查询:<select name="sgender">
-								<option value="">--请选择--
-								<option value="男">男
-								<option value="女">女
-							  </select>
-					&nbsp;&nbsp;&nbsp;
-					<input type="submit" value="查询">
-					&nbsp;&nbsp;&nbsp;
-					<a href="add.jsp">添加</a>
-				</td>
-		</tr>
-		<tr colspan="8" align="center">
-			<td>编号</td>
-			<td>姓名</td>
-			<td>性别</td>
-			<td>电话</td>
-			<td>生日</td>
-			<td>爱好</td>
-			<td>简介</td>
-			<td>操作</td>
-		</tr>
+		<table border="1" width="700">
 
-		<c:forEach items="${list }" var="stu">
-			<tr align="center">
-				<td>${stu.sid }</td>
-				<td>${stu.sname }</td>
-				<td>${stu.gender }</td>
-				<td>${stu.phone }</td>
-				<td>${stu.birthday }</td>
-				<td>${stu.hobby }</td>
-				<td>${stu.info }</td>
-				
-				<td><a href="EditServlet?sid=${stu.sid }">更新</a><a href="#" onclick="doDelete(${stu.sid})">删除</a></td>
+			<tr colspan="8">
+				<td colspan="8">按姓名查询:<input type="text" name="sname" /> &nbsp;
+					按性别查询:<select name="sgender">
+						<option value="">--请选择--
+						<option value="男">男
+						<option value="女">女
+				</select> &nbsp;&nbsp;&nbsp; <input type="submit" value="查询">
+					&nbsp;&nbsp;&nbsp; <a href="add.jsp">添加</a>
+				</td>
 			</tr>
-		</c:forEach>
-	</table>
+			
+				<tr colspan="8" align="center">
+					<td>编号</td>
+					<td>姓名</td>
+					<td>性别</td>
+					<td>电话</td>
+					<td>生日</td>
+					<td>爱好</td>
+					<td>简介</td>
+					<td>操作</td>
+				</tr>
+			<c:forEach items="${list }" var="stu">
+				<tr align="center">
+					<td>${stu.sid }</td>
+					<td>${stu.sname }</td>
+					<td>${stu.gender }</td>
+					<td>${stu.phone }</td>
+					<td>${stu.birthday }</td>
+					<td>${stu.hobby }</td>
+					<td>${stu.info }</td>
+
+					<td><a href="EditServlet?sid=${stu.sid }">更新</a><a href="#"
+						onclick="doDelete(${stu.sid})">删除</a></td>
+				</tr>
+			</c:forEach>
+		</table>
 	</form>
 </body>
 </html>

@@ -67,5 +67,23 @@ public class StudentServiceImpl implements StudentService {
 		return pageBean;
 	}
 
+	@Override
+	public PageBean findStudentByPage(int currentPage, String name, String sex) throws SQLException {
+		//封装分页的该页数据
+		PageBean<Student> pageBean = new PageBean<Student>();
+		int pageSize = StudentDao.PAGE_SIZE;
+		pageBean.setCurrentPage(currentPage);//设置当前页
+		pageBean.setPageSize(pageSize); //设置每页显示多少记录
+		StudentDao dao = new StudentDaoImpl();
+		List<Student> list = dao.findStudentByPage(currentPage,name,sex);
+		pageBean.setList(list);//设置这一页的学生数据
+		//总的记录数， 总的页数。
+		int count = dao.findCount(name,sex);//设置总的记录数
+		pageBean.setTotalSize(count);
+		//200 ， 10 ==20   201 ， 10 = 21   201 % 10 == 0 ?201 / 10 :201 % 10 + 1
+		pageBean.setTotalPage(count % pageSize == 0 ? count / pageSize : (count / pageSize) + 1);
+		return pageBean;
+	}
+
 	
 }

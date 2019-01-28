@@ -8,6 +8,17 @@ public class PageBean<T> {
 	private int pageSize;//每页的记录数
 	private int totalSize; //总的记录数
 	private List<T> list; //当前页的学生集合
+	public PageBean() {
+		super();
+	}
+	public PageBean(int currentPage, int totalPage, int pageSize, int totalSize, List<T> list) {
+		super();
+		this.currentPage = currentPage;
+		this.totalPage = totalPage;
+		this.pageSize = pageSize;
+		this.totalSize = totalSize;
+		this.list = list;
+	}
 	public int getCurrentPage() {
 		return currentPage;
 	}

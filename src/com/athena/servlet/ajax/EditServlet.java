@@ -1,4 +1,4 @@
-package com.athena.servlet;
+package com.athena.servlet.ajax;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,34 +16,24 @@ import com.athena.domain.Student;
 import com.athena.service.StudentService;
 import com.athena.service.impl.StudentServiceImpl;
 
-/**
- * Servlet implementation class addServlet
- */
-public class addServlet extends HttpServlet {
-	
+
+public class EditServlet extends HttpServlet {
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		try {
-			String sname = request.getParameter("sname");
-			String gender = request.getParameter("gender");
-			String phone = request.getParameter("phone");
-			String birthday = request.getParameter("birthday");
-			String[] h = request.getParameterValues("hobby");
-			String info = request.getParameter("info");
-			//Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+			int sid = Integer.parseInt(request.getParameter("sid"));
 			
-			String hobby = Arrays.toString(h);
-			hobby = hobby.substring(1, hobby.length()-1);
-			
-			Student student = new Student(sname,gender,phone,birthday,hobby,info);
 			StudentService service = new StudentServiceImpl();
-			service.insert(student);
+			Student stu = service.findStudentById(sid);
 			
-			request.getRequestDispatcher("StudentListServlet").forward(request, response);
+			request.setAttribute("stu",stu);
+			
+			request.getRequestDispatcher("edit.jsp").forward(request, response);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -81,6 +81,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>AjaxStudentListPageServlet</display-name>
+    <servlet-name>AjaxStudentListPageServlet</servlet-name>
+    <servlet-class>com.athena.servlet.ajax.StudentListPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjaxStudentListPageServlet</servlet-name>
+    <url-pattern>/AjaxStudentListPageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>SexServlet</display-name>
     <servlet-name>SexServlet</servlet-name>
     <servlet-class>com.athena.servlet.SexServlet</servlet-class>
@@ -88,5 +98,15 @@
   <servlet-mapping>
     <servlet-name>SexServlet</servlet-name>
     <url-pattern>/SexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SkipPage</display-name>
+    <servlet-name>SkipPage</servlet-name>
+    <servlet-class>com.athena.servlet.ajax.SkipPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SkipPage</servlet-name>
+    <url-pattern>/SkipPage</url-pattern>
   </servlet-mapping>
 </web-app>

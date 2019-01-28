@@ -1,4 +1,4 @@
-package com.athena.servlet;
+package com.athena.servlet.ajax;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,11 +30,10 @@ public class addServlet extends HttpServlet {
 			String birthday = request.getParameter("birthday");
 			String[] h = request.getParameterValues("hobby");
 			String info = request.getParameter("info");
-			//Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+		//	Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
 			
 			String hobby = Arrays.toString(h);
 			hobby = hobby.substring(1, hobby.length()-1);
-			
 			Student student = new Student(sname,gender,phone,birthday,hobby,info);
 			StudentService service = new StudentServiceImpl();
 			service.insert(student);

@@ -101,11 +101,56 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
+	public int findCount(String sname, String sgender) throws SQLException {
+		QueryRunner runner = new QueryRunner(JDBCUtil02.getDataSource());
+		String sql = "select count(*) from stu where 1=1";
+		List<Object> list = new ArrayList<>();
+		if(!TextUtils.isEmpty(sname)) {
+			sql = sql + " and sname like ?";
+			list.add("%" + sname + "%");
+		}
+		if( !TextUtils.isEmpty(sgender) ) {
+			sql = sql + " and gender = ?";
+			list.add(sgender);
+		}
+		//用于处理 平均值 、 总的个数。 
+		Long  result = (Long) runner.query(sql , new ScalarHandler() ,list.toArray());
+
+		return result.intValue();
+	}
+	
+	@Override
 	public List<Student> sexStudent(String sgender) throws SQLException {
 		QueryRunner runner = new QueryRunner(JDBCUtil02.getDataSource());
 		String sql = "select * from stu where gender=? ";
 		List<Student> list = runner.query(sql, new BeanListHandler<Student>(Student.class), sgender);
 		return list;
 	}
+
+	@Override
+	public List<Student> findStudentByPage(int currentPage, String sname, String sgender) throws SQLException {
+		QueryRunner runner = new QueryRunner(JDBCUtil02.getDataSource());
+		//第一个问号，代表一页返回多少条记录  ， 第二个问号， 跳过前面的多少条记录。
+		//5 0 --- 第一页 (1-1)*5
+		//5 5  --- 第二页 (2-1)*5
+		//5 10  --- 第三页
+		String sql = "select * from stu where 1=1";
+		List<Object> list = new ArrayList<>();
+		if(!TextUtils.isEmpty(sname)) {
+			sql = sql + " and sname like ?";
+			list.add("%" + sname + "%");
+		}
+		if( !TextUtils.isEmpty(sgender) ) {
+			sql = sql + " and gender = ?";
+			list.add(sgender);
+		}
+		sql += " limit ? offset ?";
+		list.add(PAGE_SIZE);
+		list.add(((currentPage - 1)*PAGE_SIZE));
+		return runner.query(sql, new BeanListHandler<Student>(Student.class),list.toArray());
+	
+	}
+
+	
 
 }

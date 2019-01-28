@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h3><a href="StudentListServlet">显示所有学生列表</a></h3>
-	<h3><a href="StudentListPageServlet?currentPage=1">分页显示所有学生信息</a></h3>
+	<h3><a href="SkipPage">分页显示所有学生信息</a></h3>
 </body>
 </html>

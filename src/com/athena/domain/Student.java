@@ -7,7 +7,7 @@ public class Student {
 	private String sname;
 	private String gender;
 	private String phone;
-	private Date birthday;
+	private String birthday;
 	private String hobby;
 	private String info;
 	
@@ -15,7 +15,8 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public Student(String sname, String gender, String phone, Date birthday, String hobby, String info) {
+	
+	public Student(String sname, String gender, String phone, String birthday, String hobby, String info) {
 		super();
 		this.sname = sname;
 		this.gender = gender;
@@ -24,8 +25,8 @@ public class Student {
 		this.hobby = hobby;
 		this.info = info;
 	}
-	
-	public Student(int sid, String sname, String gender, String phone, Date birthday, String hobby, String info) {
+
+	public Student(int sid, String sname, String gender, String phone, String birthday, String hobby, String info) {
 		super();
 		this.sid = sid;
 		this.sname = sname;
@@ -35,6 +36,7 @@ public class Student {
 		this.hobby = hobby;
 		this.info = info;
 	}
+
 	@Override
 	public String toString() {
 		return "Student [sid=" + sid + ", sname=" + sname + ", gender=" + gender + ", phone=" + phone + ", birthday="
@@ -64,10 +66,10 @@ public class Student {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public String getHobby() {

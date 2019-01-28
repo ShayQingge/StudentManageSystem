@@ -22,5 +22,7 @@ public interface StudentService {
 
 	List<Student> searchStudent(String sname,String sgender) throws SQLException;
 
+	PageBean findStudentByPage(int currentPage, String name, String sex) throws SQLException;
+
 
 }
